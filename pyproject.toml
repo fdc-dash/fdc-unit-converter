@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "fdc-unit-converter"
+version = "0.1.0"
+description = "A flexible unit conversion library for scientific and engineering use"
+authors = ["Ariel Cabello <acabello@fdc-group.com>"
+]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "fdc_unit_converter", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+numpy = "*"
+pandas = "*"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.urls]
+Homepage = "https://github.com/fdc-dash/fdc-unit-converter"
+Issues = "https://github.com/fdc-dash/fdc-unit-converter/issues"
