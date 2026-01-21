@@ -402,13 +402,21 @@ class UnitConverter:
             f = {
                 # From celsius
                 (units.celsius, units.fahrenheit): value * 9 / 5 + 32,
+                (units.celsius, units.kelvin): value + 273.15,
 
                 # From fahrenheit
                 (units.fahrenheit, units.celsius): (value - 32) * 5 / 9,
                 (units.fahrenheit, units.rankine): value + 459.67,
+                (units.fahrenheit, units.kelvin): (value - 32) * 5 / 9 + 273.15,
 
                 # From rankine
                 (units.rankine, units.celsius): (value - 491.67) * 5 / 9,
+                (units.rankine, units.kelvin): value * 5 / 9,
+
+                # From kelvin
+                (units.kelvin, units.celsius): value - 273.15,
+                (units.kelvin, units.fahrenheit): (value - 273.15) * 9 / 5 + 32,
+                (units.kelvin, units.rankine): value * 9 / 5,
             }
             return f[from_to]
         # fmt: on

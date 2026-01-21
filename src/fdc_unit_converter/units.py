@@ -98,6 +98,7 @@ thousand_standard_cubic_feet_per_day = Unit("thousand standard cubic feet per da
 celsius = Unit("celsius", "°C", Magnitude.TEMPERATURE)
 fahrenheit = Unit("fahrenheit", "°F", Magnitude.TEMPERATURE)
 rankine = Unit("rankine", "°R", Magnitude.TEMPERATURE)
+kelvin = Unit("kelvin", "K", Magnitude.TEMPERATURE)
 
 # Time
 second = Unit("second", "s", Magnitude.TIME)
