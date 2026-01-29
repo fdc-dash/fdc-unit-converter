@@ -1,26 +1,4 @@
-class Magnitude:
-    """
-    Representation of magnitude of units of measure.
-    """
-
-    AREA = "area"
-    COMPRESSIBILITY = "compressibility"
-    CURRENCY = "currency"
-    DENSITY = "density"
-    ENERGY = "energy"
-    GAS_GRAVITY = "gas_gravity"
-    LENGTH = "length"
-    LIQUID_GRAVITY = "liquid_gravity"
-    MASS = "mass"
-    PERMEABILITY = "permeability"
-    PRESSURE = "pressure"
-    RATE = "rate"
-    TEMPERATURE = "temperature"
-    TIME = "time"
-    VISCOSITY = "viscosity"
-    VOLUME = "volume"
-    VOLUME_RATIO = "volume_ratio"
-
+from src.fdc_unit_converter.magnitudes import Magnitude
 
 class Unit:
     """
@@ -31,6 +9,9 @@ class Unit:
         self.name = name
         self.symbol = symbol
         self.magnitude = magnitude
+
+        # Register the unit in the registry for the given magnitude
+        Magnitude._units_registry.setdefault(magnitude, []).append(self)
 
 
 # fmt: off

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fdc-unit-converter"
-version = "0.2.0"
+version = "1.0.0"
 description = "A flexible unit conversion library for scientific and engineering use"
 authors = ["Ariel Cabello <acabello@fdc-group.com>"
 ]
