@@ -11,6 +11,7 @@ env/
 # Editor/IDE settings
 .vscode/
 .idea/
+.claude/
 *.swp
 
 # Distribution / packaging

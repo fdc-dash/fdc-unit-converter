@@ -36,6 +36,34 @@ def test_temperature_rankine_to_c():
     assert result == pytest.approx(0.0)
 
 
+def test_temperature_c_to_k():
+    assert UnitConverter.convert(0, units.celsius, units.kelvin) == pytest.approx(273.15)
+
+
+def test_temperature_k_to_c():
+    assert UnitConverter.convert(273.15, units.kelvin, units.celsius) == pytest.approx(0.0)
+
+
+def test_temperature_k_to_f():
+    # 0K = -459.67°F (absolute zero)
+    assert UnitConverter.convert(0, units.kelvin, units.fahrenheit) == pytest.approx(-459.67)
+
+
+def test_temperature_f_to_k():
+    # -459.67°F = 0K
+    assert UnitConverter.convert(-459.67, units.fahrenheit, units.kelvin) == pytest.approx(0.0)
+
+
+def test_temperature_k_to_r():
+    # 0K = 0°R
+    assert UnitConverter.convert(0, units.kelvin, units.rankine) == pytest.approx(0.0)
+
+
+def test_temperature_r_to_k():
+    # 0°R = 0K
+    assert UnitConverter.convert(0, units.rankine, units.kelvin) == pytest.approx(0.0)
+
+
 # ------------------------------
 # Pressure conversions
 # ------------------------------
