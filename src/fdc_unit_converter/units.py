@@ -67,6 +67,9 @@ class Unit:
         self._to_base = to_base
         self._from_base = from_base
 
+        # Register the unit in the registry for the given magnitude
+        Magnitude._units_registry.setdefault(magnitude, []).append(self)
+
     @property
     def is_convertible(self) -> bool:
         """Whether this unit carries enough information to be converted."""

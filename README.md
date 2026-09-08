@@ -10,12 +10,31 @@ pip install fdc-unit-converter
 
 ## Usage
 
+Basic conversion:
+
 ```python
 from fdc_unit_converter import UnitConverter, units
 
 # Convert 1000 meters to kilometers
 result = UnitConverter.convert(1000, units.meter, units.kilometer)
 print(result)  # 1.0
+```
+
+List the available magnitudes:
+
+```python
+from fdc_unit_converter.magnitudes import Magnitude
+
+print(Magnitude.list_magnitudes())
+```
+
+List the available units of a magnitude:
+
+```python
+from fdc_unit_converter.magnitudes import Magnitude
+
+units = Magnitude.list_magnitude_units(Magnitude.LENGTH)
+print([(unit.name, unit.symbol) for unit in units])
 ```
 
 ## Features

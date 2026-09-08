@@ -71,7 +71,7 @@ def test_every_ordered_pair_converts(magnitude, a_name, a, b_name, b):
 
 
 def test_every_declared_magnitude_has_at_least_one_unit():
-    declared = {value for name, value in vars(Magnitude).items() if not name.startswith("_")}
+    declared = {value for name, value in vars(Magnitude).items() if not name.startswith("_") and isinstance(value, str)}
     assert declared - set(UNITS_BY_MAGNITUDE) == set()
 
 
@@ -193,6 +193,22 @@ def test_api_gravity_is_not_affine_but_still_round_trips():
 def test_unit_rejects_a_half_declared_escape_hatch():
     with pytest.raises(ValueError, match="must define both"):
         Unit("broken", "x", Magnitude.LENGTH, to_base=lambda v: v)
+
+
+# ------------------------------
+# The magnitude registry introduced in 1.0.0
+# ------------------------------
+def test_list_magnitudes_covers_every_magnitude_with_units():
+    assert set(Magnitude.list_magnitudes()) == set(UNITS_BY_MAGNITUDE)
+
+
+def test_list_magnitude_units_matches_the_declared_units():
+    listed = Magnitude.list_magnitude_units(Magnitude.LENGTH)
+    assert {unit.symbol for unit in listed} == {unit.symbol for _, unit in UNITS_BY_MAGNITUDE[Magnitude.LENGTH]}
+
+
+def test_list_magnitude_units_of_an_unknown_magnitude_is_empty():
+    assert Magnitude.list_magnitude_units("not_a_magnitude") == []
 
 
 # ------------------------------

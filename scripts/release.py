@@ -70,9 +70,7 @@ def read_version() -> str:
 
 def write_version(new_version: str) -> None:
     text = PYPROJECT.read_text(encoding="utf-8")
-    updated, count = VERSION_RE.subn(
-        lambda m: m.group("prefix") + new_version + m.group("suffix"), text, count=1
-    )
+    updated, count = VERSION_RE.subn(lambda m: m.group("prefix") + new_version + m.group("suffix"), text, count=1)
     if count != 1:
         raise ReleaseError("could not rewrite the version field in pyproject.toml")
     PYPROJECT.write_text(updated, encoding="utf-8")
@@ -87,9 +85,7 @@ def bump(current: str, part: str) -> str:
     try:
         major, minor, patch = (int(n) for n in core.split("."))
     except ValueError as exc:
-        raise ReleaseError(
-            "current version {0!r} is not semver; pass an explicit version".format(current)
-        ) from exc
+        raise ReleaseError("current version {0!r} is not semver; pass an explicit version".format(current)) from exc
     if part == "major":
         return "{0}.0.0".format(major + 1)
     if part == "minor":
@@ -103,9 +99,7 @@ def check_git_state(allow_dirty: bool) -> None:
         raise ReleaseError("not inside a git repository")
     dirty = run(["git", "status", "--porcelain"], capture=True)
     if dirty and not allow_dirty:
-        raise ReleaseError(
-            "the working tree has uncommitted changes; commit or stash them first:\n" + dirty
-        )
+        raise ReleaseError("the working tree has uncommitted changes; commit or stash them first:\n" + dirty)
     branch = run(["git", "rev-parse", "--abbrev-ref", "HEAD"], capture=True)
     print("    branch: " + branch)
 
@@ -154,9 +148,15 @@ def smoke_test(version: str) -> None:
     )
     run(
         [
-            "uv", "run", "--no-project", "--isolated",
-            "--with", str(wheels[0]),
-            "python", "-c", check,
+            "uv",
+            "run",
+            "--no-project",
+            "--isolated",
+            "--with",
+            str(wheels[0]),
+            "python",
+            "-c",
+            check,
         ]
     )
 
