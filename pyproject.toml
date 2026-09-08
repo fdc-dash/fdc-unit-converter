@@ -1,27 +1,40 @@
-[tool.poetry]
+[project]
 name = "fdc-unit-converter"
-version = "0.1.0"
+version = "1.1.0"
 description = "A flexible unit conversion library for scientific and engineering use"
-authors = ["Ariel Cabello <acabello@fdc-group.com>"
+authors = [
+    { name = "Ariel Cabello", email = "acabello@fdc-group.com" },
 ]
 license = "MIT"
+license-files = ["LICENSE"]
 readme = "README.md"
-packages = [
-    { include = "fdc_unit_converter", from = "src" }
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pandas",
 ]
 
-[tool.poetry.dependencies]
-python = ">=3.9"
-numpy = "*"
-pandas = "*"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.0"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.urls]
+[project.urls]
 Homepage = "https://github.com/fdc-dash/fdc-unit-converter"
 Issues = "https://github.com/fdc-dash/fdc-unit-converter/issues"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+    "pytest>=8.0,<9.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.9,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "fdc_unit_converter"
+module-root = "src"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120

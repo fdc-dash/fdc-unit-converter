@@ -1,6 +1,6 @@
-import pytest
 import numpy as np
 import pandas as pd
+import pytest
 
 from fdc_unit_converter import UnitConverter, units
 
@@ -103,7 +103,9 @@ def test_time_day_to_hour():
 # Density conversions
 # ------------------------------
 def test_density_lbft3_to_kgm3():
-    assert UnitConverter.convert(1, units.pound_per_cubic_foot, units.kilogram_per_cubic_meter) == pytest.approx(16.0184634)
+    assert UnitConverter.convert(1, units.pound_per_cubic_foot, units.kilogram_per_cubic_meter) == pytest.approx(
+        16.0184634
+    )
 
 
 # ------------------------------
